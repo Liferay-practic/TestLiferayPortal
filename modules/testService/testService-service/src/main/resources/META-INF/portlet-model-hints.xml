@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.testService.model.TestUser">
+		<field name="uuid" type="String" />
+		<field name="customUserId" type="long" />
+		<field name="name" type="String" />
+		<field name="mail" type="String" />
+		<field name="message" type="String" />
+	</model>
+</model-hints>
