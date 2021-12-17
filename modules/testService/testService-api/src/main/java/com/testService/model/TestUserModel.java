@@ -54,21 +54,6 @@ public interface TestUserModel extends BaseModel<TestUser> {
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the uuid of this test user.
-	 *
-	 * @return the uuid of this test user
-	 */
-	@AutoEscape
-	public String getUuid();
-
-	/**
-	 * Sets the uuid of this test user.
-	 *
-	 * @param uuid the uuid of this test user
-	 */
-	public void setUuid(String uuid);
-
-	/**
 	 * Returns the custom user ID of this test user.
 	 *
 	 * @return the custom user ID of this test user

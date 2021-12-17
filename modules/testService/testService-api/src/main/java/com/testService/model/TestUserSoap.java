@@ -30,7 +30,6 @@ public class TestUserSoap implements Serializable {
 	public static TestUserSoap toSoapModel(TestUser model) {
 		TestUserSoap soapModel = new TestUserSoap();
 
-		soapModel.setUuid(model.getUuid());
 		soapModel.setCustomUserId(model.getCustomUserId());
 		soapModel.setName(model.getName());
 		soapModel.setMail(model.getMail());
@@ -88,14 +87,6 @@ public class TestUserSoap implements Serializable {
 		setCustomUserId(pk);
 	}
 
-	public String getUuid() {
-		return _uuid;
-	}
-
-	public void setUuid(String uuid) {
-		_uuid = uuid;
-	}
-
 	public long getCustomUserId() {
 		return _customUserId;
 	}
@@ -128,7 +119,6 @@ public class TestUserSoap implements Serializable {
 		_message = message;
 	}
 
-	private String _uuid;
 	private long _customUserId;
 	private String _name;
 	private String _mail;

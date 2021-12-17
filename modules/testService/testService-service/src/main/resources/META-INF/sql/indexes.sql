@@ -1,1 +1,1 @@
-create index IX_D647DAA1 on liferay_db_TestUser (uuid_[$COLUMN_LENGTH:75$]);
+create index IX_5BDDBDE on liferay_db_TestNotice (ownerId);
