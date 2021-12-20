@@ -1,0 +1,4 @@
+Bundle-Name: userPortlet
+Bundle-SymbolicName: com.test.userPortlet
+Bundle-Version: 1.0.0
+Export-Package: com.test.userPortlet.constants
