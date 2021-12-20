@@ -200,6 +200,10 @@ public class TestNoticeLocalServiceUtil {
 		return getService().fetchTestNotice(noticeId);
 	}
 
+	public static java.util.List<com.testService.model.TestNotice> findAll() {
+		return getService().findAll();
+	}
+
 	public static com.testService.model.TestNotice findByOwnerId(long ownerId)
 		throws com.testService.exception.NoSuchTestNoticeException {
 

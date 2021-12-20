@@ -2,18 +2,16 @@ package com.testPortlet.service;
 
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.testService.exception.NoSuchTestNoticeException;
 import com.testService.model.TestNotice;
-import com.testService.model.TestUser;
 import com.testService.service.TestNoticeLocalService;
-import com.testService.service.TestUserLocalService;
-import com.testService.service.persistence.TestNoticePersistence;
-import com.testService.service.persistence.TestNoticeUtil;
-import com.testService.service.persistence.impl.TestNoticePersistenceImpl;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component(service = TestService.class)
 public class TestService {
@@ -29,7 +27,15 @@ public class TestService {
         _noticeLocalService.addTestNotice(notice);
     }
 
-    public String[] getNotice(long ownerId) throws NoSuchTestNoticeException {
-        return _noticeLocalService.findByOwnerId(ownerId).getNoticeText().split("[\n]");
+    public TestNotice getNotice(long ownerId) throws NoSuchTestNoticeException {
+        return _noticeLocalService.findByOwnerId(ownerId);
+    }
+
+    public void deleteNoticeById(long noticeId) throws PortalException {
+        _noticeLocalService.deleteTestNotice(noticeId);
+    }
+
+    public List<TestNotice> getAllByOwnerId(long ownerId){
+        return _noticeLocalService.findAll().stream().filter(n->n.getOwnerId() == ownerId).collect(Collectors.toList());
     }
 }
