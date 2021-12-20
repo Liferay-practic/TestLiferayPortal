@@ -60,11 +60,9 @@ public class TestUserCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(9);
 
-		sb.append("{uuid=");
-		sb.append(uuid);
-		sb.append(", customUserId=");
+		sb.append("{customUserId=");
 		sb.append(customUserId);
 		sb.append(", name=");
 		sb.append(name);
@@ -80,13 +78,6 @@ public class TestUserCacheModel
 	@Override
 	public TestUser toEntityModel() {
 		TestUserImpl testUserImpl = new TestUserImpl();
-
-		if (uuid == null) {
-			testUserImpl.setUuid("");
-		}
-		else {
-			testUserImpl.setUuid(uuid);
-		}
 
 		testUserImpl.setCustomUserId(customUserId);
 
@@ -118,8 +109,6 @@ public class TestUserCacheModel
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		uuid = objectInput.readUTF();
-
 		customUserId = objectInput.readLong();
 		name = objectInput.readUTF();
 		mail = objectInput.readUTF();
@@ -128,13 +117,6 @@ public class TestUserCacheModel
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput) throws IOException {
-		if (uuid == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(uuid);
-		}
-
 		objectOutput.writeLong(customUserId);
 
 		if (name == null) {
@@ -159,7 +141,6 @@ public class TestUserCacheModel
 		}
 	}
 
-	public String uuid;
 	public long customUserId;
 	public String name;
 	public String mail;

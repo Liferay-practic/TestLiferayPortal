@@ -9,14 +9,9 @@
 
 		<column name="customUserId" db-name="customUserId" primary="true" type="long"/>
 
-		<column name="Tname" db-name="Tname" type="String"/>
-		<column name="Tmail" db-name="Tmail" type="String"/>
-		<column name="Tmessage" db-name="Tmessage" type="String"/>
-
-		<order by="desc">
-			<order-column name="name"/>
-		</order>
-
+		<column name="name" db-name="name" type="String"/>
+		<column name="mail" db-name="mail" type="String"/>
+		<column name="message" db-name="message" type="String"/>
 
 		<finder name="CustomUserId" return-type="Collection">
 			<finder-column name="customUserId"/>
@@ -25,5 +20,15 @@
 		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
 		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
 
+	</entity>
+
+	<entity name="TestNotice" local-service="true" remote-service="true" uuid="false">
+		<column name="noticeId" type="long" primary="true"/>
+		<column name="noticeText" type="String"/>
+		<column name="ownerId" type="long"/>
+
+		<finder name="OwnerId" return-type="TestNotice">
+			<finder-column name="ownerId"/>
+		</finder>
 	</entity>
 </service-builder>

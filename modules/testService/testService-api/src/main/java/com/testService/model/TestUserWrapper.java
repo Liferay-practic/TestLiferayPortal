@@ -41,7 +41,6 @@ public class TestUserWrapper
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("uuid", getUuid());
 		attributes.put("customUserId", getCustomUserId());
 		attributes.put("name", getName());
 		attributes.put("mail", getMail());
@@ -52,12 +51,6 @@ public class TestUserWrapper
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		String uuid = (String)attributes.get("uuid");
-
-		if (uuid != null) {
-			setUuid(uuid);
-		}
-
 		Long customUserId = (Long)attributes.get("customUserId");
 
 		if (customUserId != null) {
@@ -143,16 +136,6 @@ public class TestUserWrapper
 		return model.getPrimaryKey();
 	}
 
-	/**
-	 * Returns the uuid of this test user.
-	 *
-	 * @return the uuid of this test user
-	 */
-	@Override
-	public String getUuid() {
-		return model.getUuid();
-	}
-
 	@Override
 	public void persist() {
 		model.persist();
@@ -216,16 +199,6 @@ public class TestUserWrapper
 	@Override
 	public void setPrimaryKey(long primaryKey) {
 		model.setPrimaryKey(primaryKey);
-	}
-
-	/**
-	 * Sets the uuid of this test user.
-	 *
-	 * @param uuid the uuid of this test user
-	 */
-	@Override
-	public void setUuid(String uuid) {
-		model.setUuid(uuid);
 	}
 
 	@Override
