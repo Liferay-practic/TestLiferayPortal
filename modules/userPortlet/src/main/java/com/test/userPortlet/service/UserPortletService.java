@@ -18,7 +18,6 @@ public class UserPortletService {
         return _customUserLocalService.getTestUsers(-1, -1);
     }
 
-
     public void addNewUser(String name, String mail, String message) {
         TestUser customUser = _customUserLocalService.createTestUser(CounterLocalServiceUtil.increment());
 

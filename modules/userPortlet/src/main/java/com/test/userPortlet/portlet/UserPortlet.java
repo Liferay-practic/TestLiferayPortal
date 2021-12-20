@@ -41,12 +41,11 @@ public class UserPortlet extends MVCPortlet {
     }
 
     @ProcessAction(name = "actionAdd")
-    public void actionAdd(ActionRequest actionRequest, ActionResponse actionResponse) {
+    public void actionAdd(ActionRequest actionRequest) {
         userPortletService.addNewUser(
                 ParamUtil.getString(actionRequest, "name"),
                 ParamUtil.getString(actionRequest, "mail"),
                 ParamUtil.getString(actionRequest, "message")
         );
     }
-
 }
