@@ -11,6 +11,7 @@ import org.osgi.service.component.annotations.Reference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Component(service = TestService.class)
@@ -37,5 +38,11 @@ public class TestService {
 
     public List<TestNotice> getAllByOwnerId(long ownerId){
         return _noticeLocalService.findAll().stream().filter(n->n.getOwnerId() == ownerId).collect(Collectors.toList());
+    }
+
+    public void editNotice(long noticeId, String text) throws PortalException {
+        TestNotice notice = _noticeLocalService.getTestNotice(noticeId);
+        notice.setNoticeText(text);
+        _noticeLocalService.updateTestNotice(notice);
     }
 }
