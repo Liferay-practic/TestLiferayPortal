@@ -201,6 +201,11 @@ public class TestNoticeLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.testService.model.TestNotice> findAll() {
+		return _testNoticeLocalService.findAll();
+	}
+
+	@Override
 	public com.testService.model.TestNotice findByOwnerId(long ownerId)
 		throws com.testService.exception.NoSuchTestNoticeException {
 

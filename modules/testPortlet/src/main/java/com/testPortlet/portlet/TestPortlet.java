@@ -1,9 +1,8 @@
 package com.testPortlet.portlet;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -15,6 +14,7 @@ import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.*;
 import java.io.IOException;
+import java.util.Random;
 
 @Component(
         immediate = true,
@@ -39,15 +39,9 @@ public class TestPortlet extends MVCPortlet {
     @Override
     public void render(RenderRequest renderRequest, RenderResponse renderResponse) throws IOException, PortletException {
         ThemeDisplay themeDisplay = (ThemeDisplay) renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
         if (themeDisplay.isSignedIn()) {
-            try {
-                renderRequest.setAttribute("userNotice", _customService.getNotice(themeDisplay.getUserId()));
-            } catch (NoSuchTestNoticeException e) {
-                e.printStackTrace();
-            }
+            renderRequest.setAttribute("userNotice", _customService.getAllByOwnerId(themeDisplay.getUserId()));
         }
-
         super.render(renderRequest, renderResponse);
     }
 
@@ -56,4 +50,16 @@ public class TestPortlet extends MVCPortlet {
         User user = (User) request.getAttribute(WebKeys.USER);
         _customService.addNotice(ParamUtil.getString(request, "text"), user.getUserId());
     }
+
+    @ProcessAction(name = "deleteNoticeById")
+    public void deleteNoticeById(ActionRequest request, ActionResponse response) throws PortalException {
+        _customService.deleteNoticeById(ParamUtil.getLong(request, "noticeId"));
+    }
+
+    @ProcessAction(name = "updateNoticeById")
+    public void updateNotice(ActionRequest request, ActionResponse response) throws PortalException {
+        _customService.editNotice(ParamUtil.getLong(request, "id"),
+                                  ParamUtil.getString(request, "text"));
+    }
+
 }

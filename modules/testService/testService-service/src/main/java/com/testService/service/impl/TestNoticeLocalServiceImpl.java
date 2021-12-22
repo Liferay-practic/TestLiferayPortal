@@ -23,6 +23,8 @@ import com.testService.service.base.TestNoticeLocalServiceBaseImpl;
 import com.testService.service.persistence.TestNoticePersistence;
 import org.osgi.service.component.annotations.Component;
 
+import java.util.List;
+
 /**
  * The implementation of the test notice local service.
  *
@@ -51,4 +53,10 @@ public class TestNoticeLocalServiceImpl extends TestNoticeLocalServiceBaseImpl {
 	public TestNotice findByOwnerId(long ownerId) throws NoSuchTestNoticeException {
 		return testNoticePersistence.findByOwnerId(ownerId);
 	}
+
+	public java.util.List<TestNotice> findAll() {
+		return testNoticePersistence.findAll();
+	}
+
+
 }

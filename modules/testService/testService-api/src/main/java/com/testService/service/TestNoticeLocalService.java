@@ -182,6 +182,8 @@ public interface TestNoticeLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public TestNotice fetchTestNotice(long noticeId);
 
+	public List<TestNotice> findAll();
+
 	public TestNotice findByOwnerId(long ownerId)
 		throws NoSuchTestNoticeException;
 
