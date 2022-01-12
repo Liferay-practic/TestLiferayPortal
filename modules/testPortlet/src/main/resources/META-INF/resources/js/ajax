@@ -1,0 +1,70 @@
+includefile = "init.jsp"
+
+$(document).ready(function () {
+    $(".appendArea").on('click', function () {
+        $("ol").append("<li>" +
+            "<form id='formId'>" +
+            "<textarea class=\"sendText\" name=\"story\"\n" +
+            "          rows=\"5\" cols=\"33\">\n" +
+            "It was a dark and stormy night...\n" +
+            "</textarea>" +
+            "<button class=\"sendNotice\">Send</button>" +
+            "</form>" +
+            "</li>");
+    });
+});
+
+$(document).on('click', '.sendNotice', function (event) {
+    debugger;
+    event.preventDefault();
+    event.stopPropagation();
+    event.stopImmediatePropagation();
+    jQuery.ajax({
+        type: "POST",
+        data: {"<portlet:namespace/>noticeText": $(this).get(0).parentElement.children.story.value},
+        url: "${createNotice}",
+        success: function () {
+            alert("success")
+        }
+    });
+});
+
+$(document).ready(function () {
+    $(".editNotice").on('click', function (event) {
+        debugger;
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        jQuery.ajax({
+            type: "POST",
+            data: {
+                "<portlet:namespace/>noticeText": $(this).get(0).parentElement.children.noticeText.value,
+                "<portlet:namespace/>noticeId": $(this).get(0).parentElement.children.noticeId.value
+            },
+            url: "${updateNotice}",
+            success: function () {
+                alert("success")
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+    $(".deleteNotice").on('click', function (event) {
+        debugger;
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        $(this).get(0).parentElement.remove()
+        jQuery.ajax({
+            type: "POST",
+            data: {
+                "<portlet:namespace/>noticeId": $(this).get(0).parentElement.children.noticeId.value
+            },
+            url: "${deleteNotice}",
+            success: function () {
+                alert("success")
+            }
+        });
+    });
+});

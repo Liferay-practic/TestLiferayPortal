@@ -1,17 +1,15 @@
 package com.testPortlet.service;
 
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.testService.exception.NoSuchTestNoticeException;
 import com.testService.model.TestNotice;
 import com.testService.service.TestNoticeLocalService;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 @Component(service = TestService.class)
@@ -24,7 +22,6 @@ public class TestService {
         TestNotice notice = _noticeLocalService.createTestNotice(CounterLocalServiceUtil.increment());
         notice.setNoticeText(text);
         notice.setOwnerId(ownerId);
-
         _noticeLocalService.addTestNotice(notice);
     }
 
@@ -36,8 +33,8 @@ public class TestService {
         _noticeLocalService.deleteTestNotice(noticeId);
     }
 
-    public List<TestNotice> getAllByOwnerId(long ownerId){
-        return _noticeLocalService.findAll().stream().filter(n->n.getOwnerId() == ownerId).collect(Collectors.toList());
+    public List<TestNotice> getAllByOwnerId(long ownerId) {
+        return _noticeLocalService.findAll().stream().filter(n -> n.getOwnerId() == ownerId).collect(Collectors.toList());
     }
 
     public void editNotice(long noticeId, String text) throws PortalException {

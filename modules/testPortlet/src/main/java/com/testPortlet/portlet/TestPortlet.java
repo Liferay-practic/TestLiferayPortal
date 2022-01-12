@@ -8,13 +8,12 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.testPortlet.constants.TestPortletKeys;
 import com.testPortlet.service.TestService;
-import com.testService.exception.NoSuchTestNoticeException;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 import javax.portlet.*;
 import java.io.IOException;
-import java.util.Random;
 
 @Component(
         immediate = true,
@@ -48,7 +47,7 @@ public class TestPortlet extends MVCPortlet {
     @ProcessAction(name = "addNotice")
     public void actionNotice(ActionRequest request, ActionResponse response) {
         User user = (User) request.getAttribute(WebKeys.USER);
-        _customService.addNotice(ParamUtil.getString(request, "text"), user.getUserId());
+        _customService.addNotice(ParamUtil.getString(request, "noticeText"), user.getUserId());
     }
 
     @ProcessAction(name = "deleteNoticeById")
@@ -58,8 +57,8 @@ public class TestPortlet extends MVCPortlet {
 
     @ProcessAction(name = "updateNoticeById")
     public void updateNotice(ActionRequest request, ActionResponse response) throws PortalException {
-        _customService.editNotice(ParamUtil.getLong(request, "id"),
-                                  ParamUtil.getString(request, "text"));
+        _customService.editNotice(ParamUtil.getLong(request, "noticeId"),
+                                  ParamUtil.getString(request, "noticeText"));
     }
 
 }
